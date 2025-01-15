@@ -1,0 +1,22 @@
+name: Linting Pipeline
+on:
+  push:
+   branches:
+    - develop
+  pull_request:
+   branches:
+    - develop
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build-step 
+        uses: actions/checkout@v4
+      - name: instaling html hint  
+        run: npm install --save-dev htmlhint
+      - name: instaling style lint  
+        run: npm install --save-dev stylelint
+      - name: running html hint  
+        run: npx htmlhint "**/*.html"
+      - name: running style lint  
+        run: npx stylelint "**/*.css"   
